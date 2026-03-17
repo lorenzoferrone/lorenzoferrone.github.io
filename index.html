@@ -55,6 +55,16 @@
     <iframe id="app-frame" src=""></iframe>
 
     <script>
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Worker registrato!', reg))
+            .catch(err => console.log('Errore registrazione:', err));
+        });
+      }
+</script>
+    <script>
         // --- CONFIGURAZIONE ---
         // Sostituisci questo hash con quello della tua password (SHA-256)
         const SECRET_HASH = "5e6d6c8b931e9c2b3e8c9b9b5f6a9c8b931e9c2b3e8c9b9b5f6a9c8b931e9c2b"; 
