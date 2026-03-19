@@ -290,13 +290,10 @@
                 })
             });
             const res = await response.json();
-            console.log(res)
             if (res.success) {
-                alert("🎉 Salvato con successo!");
                 resetUI();
             } else throw new Error(res.error);
         } catch (e) {
-          console.log(e)
             alert("Errore durante il salvataggio");
             btn.disabled = false;
             btn.innerText = "Salva nel Cloud";
