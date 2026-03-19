@@ -261,7 +261,7 @@
   }
 
     // Salvataggio nel Foglio
-    async function save() {
+  function saveData() {
         if (!currentData) return;
         const key = localStorage.getItem('miner_key');
         const btn = document.getElementById('saveBtn');
@@ -289,8 +289,6 @@
             btn.innerText = "Salva nel Cloud";
         }
     }
-
-    
 
   function startAnalysis() {
     const val = document.getElementById('wordInput').value.trim();
@@ -327,39 +325,6 @@
     document.getElementById('result-card').style.display = 'block';
   }
 
-  function saveData() {
-    if (!currentItem) return;
-
-    const key = localStorage.getItem('miner_key');      
-    const saveBtn = document.getElementById('saveBtn');
-    saveBtn.disabled = true;
-    saveBtn.innerText = "Salvataggio...";
-    
-    toggleLoader(true, "Scrittura nel foglio...");
-
-
-      try {
-        const response = await fetch(SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify({
-                action: "save",
-                key: key,
-                payload: currentData
-            })
-        });
-        const res = await response.json();
-        if (res.success) {
-            alert("🎉 Salvato con successo!");
-            reset();
-        } else throw new Error(res.error);
-    } catch (e) {
-        alert("Errore durante il salvataggio");
-        btn.disabled = false;
-        btn.innerText = "Salva nel Cloud";
-    }
-
-
-  }
 
   function resetUI() {
     document.getElementById('wordInput').value = "";
