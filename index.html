@@ -325,9 +325,22 @@
 
   function render(data) {
     // Gestione fallback per i nuovi campi (nel caso Gemini non li mandi o il backend non sia aggiornato)
+
+    console.log(data)
+
+    let word = data.word || '---'
+
+    if (data.pos == "n") {
+      word = `${data.gender} ${word}` 
+    }
+
+    if (data.pos == "v") {
+      word = `å ${word}`
+    }
+    
     document.getElementById('resBadge').innerText = data.gender || 'n/a';
     document.getElementById('resConj').innerText = data.conjugation || '-';
-    document.getElementById('resWord').innerText = data.word || '---';
+    document.getElementById('resWord').innerText = word;
     document.getElementById('resTrans').innerText = data.translation || 'Non trovata';
     document.getElementById('resExNo').innerText = data.sentence_no || '-';
     document.getElementById('resExIt').innerText = data.sentence_en || '-';
